@@ -1,12 +1,89 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/jpg" href="./assets/logo/logo.jpg" />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/fd61535574.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Les petits plats</title>
-</head>
-<body>
-    <p>serve page content</p>  
-</body>
+  </head>
+  <body>
+    <header class="header">
+      <a href="#" id="link-logo"
+        ><img
+          id="img-logo"
+          src="assets/logo/logo.jpg"
+          alt="Logo for petits plats"
+      /></a>
+      <h1 class="header__title">Les petits plats</h1>
+    </header>
+    <main>
+      <form class="form__container">
+        <input
+          class="form__item"
+          type="text"
+          id="searchInput"
+          placeholder="Rechercher une recette"
+          autocomplete="off"
+        />
+        <button class="form__item" id="glass-icon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
+      <p class="no-result"></p>
+      <section class="tags">
+        <!-- tags from search filter -->
+      </section>
+
+      <section class="filter">
+        <div class="filter__custom-select">
+          <span class="filter__custom-arrow"></span>
+          <input
+            class="filter__select filter__select--primary"
+            type="button"
+            data-color="primary"
+            data-value="Ingrédients"
+            value="Ingrédients"
+          />
+          <!-- UL et LI COMPONENT JAVASCRIPTS  -->
+        </div>
+
+        <div class="filter__custom-select">
+          <span class="filter__custom-arrow"></span>
+          <input
+            class="filter__select filter__select--success"
+            type="button"
+            data-color="success"
+            data-value="Appareil"
+            value="Appareil"
+          />
+          <!-- UL et LI COMPONENT JAVASCRIPTS  -->
+        </div>
+
+        <div class="filter__custom-select">
+          <span class="filter__custom-arrow"></span>
+          <input
+            class="filter__select filter__select--danger"
+            type="button"
+            data-color="danger"
+            data-value="Ustensiles"
+            value="Ustensiles"
+          />
+          <!-- UL et LI COMPONENT JAVASCRIPTS  -->
+        </div>
+      </section>
+      <div class="recipeContainer"></div>
+    </main>
+    <script src="index.js"></script>
+  </body>
 </html>
