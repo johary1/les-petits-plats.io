@@ -493,10 +493,8 @@ body {
 .filter__appliances,
 .filter__ustensils {
   border: none;
-
   width: auto;
   max-width: 667px;
-
   margin: 0;
 }
 
@@ -545,7 +543,6 @@ body {
 
 .filter__ingredients--header {
   display: flex;
-
   width: 170px;
   height: 70px;
   align-items: center;
@@ -597,7 +594,6 @@ body {
   position: absolute;
   left: 625px;
   top: 34px;
-
   z-index: 3;
   cursor: pointer;
 }
