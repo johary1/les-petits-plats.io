@@ -37,6 +37,7 @@ function filterIngredients() {
   inputIngredients.setAttribute("id", "ingredients-input");
   inputIngredients.style.display = "none";
   inputIngredients.setAttribute("placeholder", "Rechercher un ingrédient");
+  inputIngredients.setAttribute("autocomplete", "off");
   inputIngredients.className = "filter__ingredients--input";
 
   const ingredientsListBox = document.createElement("ul");
@@ -128,6 +129,7 @@ function filterAppliances() {
   const inputAppliances = document.createElement("input");
   inputAppliances.setAttribute("id", "appliances-input");
   inputAppliances.setAttribute("placeholder", "Rechercher un appareil");
+  inputAppliances.setAttribute("autocomplete", "off");
   inputAppliances.className = "filter__appliances--input";
 
   const appliancesListBox = document.createElement("ul");
@@ -219,6 +221,7 @@ function filterUstensils() {
   const inputUstensils = document.createElement("input");
   inputUstensils.setAttribute("id", "ustensils-input");
   inputUstensils.setAttribute("placeholder", "Rechercher un ustensil");
+  inputUstensils.setAttribute("autocomplete", "off");
   inputUstensils.className = "filter__ustensils--input";
 
   const ustensilsListBox = document.createElement("ul");
