@@ -15,7 +15,7 @@ function filterIngredients() {
   headerIngredients.className = "filter__ingredients--header";
 
   const title = document.createElement("h2");
-  title.textContent = "Ingredients";
+  title.textContent = "Ingrédients";
   title.className = "filter__ingredients--name";
 
   const spanAngle = document.createElement("span");
@@ -200,7 +200,7 @@ function filterUstensils() {
   headerUstensils.className = "filter__ustensils--header";
 
   const title = document.createElement("h2");
-  title.textContent = "Ustensils";
+  title.textContent = "Ustensiles";
   title.className = "filter__ustensils--name";
 
   const spanAngle = document.createElement("span");
@@ -220,7 +220,7 @@ function filterUstensils() {
 
   const inputUstensils = document.createElement("input");
   inputUstensils.setAttribute("id", "ustensils-input");
-  inputUstensils.setAttribute("placeholder", "Rechercher un ustensil");
+  inputUstensils.setAttribute("placeholder", "Rechercher un ustensile");
   inputUstensils.setAttribute("autocomplete", "off");
   inputUstensils.className = "filter__ustensils--input";
 
