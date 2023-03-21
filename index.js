@@ -32,8 +32,6 @@ class RecipeCard {
     const ingredientsList = document.createElement("ul");
     ingredientsList.classList.add("ingredientItem");
 
-    // combine map and foreach
-    //console.time("mix method"); //0.01318359375 ms<mix method< 052978515625 ms
     const ingredients = this.recipe.ingredients.map((ingredient) => {
       const ingredientItem = document.createElement("li");
       ingredientItem.innerHTML = `${ingredient.ingredient} :  ${
@@ -51,7 +49,6 @@ class RecipeCard {
     ingredients.forEach((ingredient) =>
       ingredientsList.appendChild(ingredient)
     );
-    // console.timeEnd("mix method");
 
     recipeCard.appendChild(ingredientsList);
     return recipeCard;
