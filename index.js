@@ -6,7 +6,6 @@ async function getDataJson() {
   init();
 }
 
-/*option 1 */
 function displayData(recipes) {
   const recipeSection = document.getElementById("recipes__cards");
   recipeSection.innerHTML = "";
@@ -16,17 +15,6 @@ function displayData(recipes) {
     recipeSection.appendChild(recipeCard);
   });
 }
-
-/*option 2
-function displayData(recipes) {
-  const recipeSection = document.getElementById("recipes__cards");
-  recipeSection.innerHTML = "";
-  for (const recipe of recipes) {
-    //getRecipeCard is defined in recipeCards.js
-    const recipeCard = getRecipeCard(recipe);
-    recipeSection.appendChild(recipeCard);
-  }
-}*/
 
 function init() {
   /* Display all recipes */
