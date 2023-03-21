@@ -17,16 +17,27 @@ function realtimeSearch() {
   if (searchBarInput.value.length > 2) {
     mainInput = searchBarInput.value;
 
-    const regex = new RegExp(`${mainInput.trim().toLowerCase()}`);
+    const regex = new RegExp(`${mainInput.trim().toLowerCase()}`, "i");
     recipesToDisplay = recipes.filter((recipe) => {
       let recipeIsMatching = false;
-      if (regex.test(recipe.name)) {
+      if (
+        regex.test(recipe.name) ||
+        recipe.name.toLowerCase().includes(mainInput.trim().toLowerCase())
+      ) {
         recipeIsMatching = true;
-      } else if (regex.test(recipe.description)) {
+      } else if (
+        regex.test(recipe.description) ||
+        recipe.description
+          .toLowerCase()
+          .includes(mainInput.trim().toLowerCase())
+      ) {
         recipeIsMatching = true;
       }
       recipe.ingredients.forEach(({ ingredient }) => {
-        if (regex.test(ingredient)) {
+        if (
+          regex.test(ingredient) ||
+          ingredient.toLowerCase().includes(mainInput.trim().toLowerCase())
+        ) {
           recipeIsMatching = true;
         }
       });
@@ -80,87 +91,6 @@ function realtimeSearch() {
     noResultText.innerHTML = "";
   }
 }
-
-/**option 2 with for loop 
-//6.74ms test filtre ingredient
-function realtimeSearch() {
-  let tagsUsed = false;
-  let recipesToDisplay = [];
-  let mainInput;
-
-  if (searchBarInput.value.length > 2) {
-    mainInput = searchBarInput.value;
-    const regex = new RegExp(`${mainInput.trim().toLowerCase()}`);
-
-    for (let i = 0; i < recipes.length; i++) {
-      let recipe = recipes[i];
-      let recipeIsMatching = false;
-
-      if (regex.test(recipe.name)) {
-        recipeIsMatching = true;
-      } else if (regex.test(recipe.description)) {
-        recipeIsMatching = true;
-      }
-
-      for (let j = 0; j < recipe.ingredients.length; j++) {
-        let ingredient = recipe.ingredients[j].ingredient;
-
-        if (regex.test(ingredient)) {
-          recipeIsMatching = true;
-        }
-      }
-
-      if (recipeIsMatching) {
-        recipesToDisplay.push(recipe);
-      }
-    }
-
-    fillFilters(recipesToDisplay);
-  }
-
-  let tagIngredients = document.querySelectorAll(
-    ".tag__ingredients--wrapper .tag__ingredient .tag-blue"
-  );
-  let tagAppliances = document.querySelectorAll(
-    ".tag__appliances--wrapper .tag__appliance .tag-green"
-  );
-  let tagUstensils = document.querySelectorAll(
-    ".tag__ustensils--wrapper .tag__ustensil .tag-red"
-  );
-
-  if (
-    Array.from(tagIngredients).length > 0 ||
-    Array.from(tagAppliances).length > 0 ||
-    Array.from(tagUstensils).length > 0
-  ) {
-    tagsUsed = true;
-
-    if (recipesToDisplay.length > 0) {
-      recipesToDisplay = filteredRecipesWithTags(recipesToDisplay);
-    } else {
-      recipesToDisplay = filteredRecipesWithTags(recipes);
-    }
-  }
-
-  // handle case when there is no result
-  if (recipesToDisplay.length > 0) {
-    noResultText.innerHTML = "";
-    displayData(recipesToDisplay);
-  } else {
-    displayData(recipesToDisplay);
-    noResultText.innerHTML = "<p>Aucun résultat correspondant ...</p>";
-  }
-
-  // else
-  if (
-    (searchBarInput.value === "" || searchBarInput.value.length < 3) &&
-    tagsUsed === false
-  ) {
-    fillFilters(recipes);
-    displayData(recipes);
-    noResultText.innerHTML = "";
-  }
-}*/
 
 /** using a timer to delay the execution of the realtimeSearch()  until the user has finished typing**/
 let userTimerType;
