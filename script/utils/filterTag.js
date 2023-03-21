@@ -61,9 +61,7 @@ function addTagFilterIngredients() {
         tagIngredientContainer.appendChild(tagIngredient);
         tagIngredientContainer.appendChild(deleteTagIcon);
         deleteTagIcon.appendChild(deleteIconImg);
-        console.time("filter ingredient");
         realtimeSearch();
-        console.timeEnd("filter ingredient");
       });
     });
   }

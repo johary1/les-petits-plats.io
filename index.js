@@ -18,9 +18,7 @@ function displayData(recipes) {
 
 function init() {
   /* Display all recipes */
-  console.time("display recipe");
   displayData(recipes);
-  console.timeEnd("display recipe");
   /* Display all filters */
   filterIngredients();
   filterAppliances();
