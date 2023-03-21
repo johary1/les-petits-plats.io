@@ -61,9 +61,7 @@ function addTagFilterIngredients() {
         tagIngredientContainer.appendChild(tagIngredient);
         tagIngredientContainer.appendChild(deleteTagIcon);
         deleteTagIcon.appendChild(deleteIconImg);
-        //console.time("filter ingredient");
         realtimeSearch();
-        //console.timeEnd("filter ingredient");
       });
     });
   }
@@ -128,9 +126,7 @@ function addTagFilterUstensils() {
         deleteIconImg.style.width = "20px";
         deleteTagIcon.addEventListener("click", () => {
           tagUstensilContainer.remove();
-          //console.time("filter ustensil");
           realtimeSearch();
-          //console.timeEnd("filter ustensil");
           return false;
         });
         tagUstensilWrapper.appendChild(tagUstensilContainer);
