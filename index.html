@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Cache-Control" content="no-store" />
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/jpg" href="./assets/logo/logo.jpg" />
     <link
@@ -18,7 +17,7 @@
     <title>Les petits plats</title>
   </head>
   <body>
-    <header class="header">
+    <header class="header" id="header">
       <a href="#" id="link-logo"
         ><img
           id="img-logo"
@@ -27,63 +26,47 @@
       /></a>
       <h1 class="header__title">Les petits plats</h1>
     </header>
-    <main>
-      <form class="form__container">
-        <input
-          class="form__item"
-          type="text"
-          id="searchInput"
-          placeholder="Rechercher une recette"
-          autocomplete="off"
-        />
-        <button class="form__item" id="glass-icon">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </button>
-      </form>
-      <p class="no-result"></p>
-      <section class="tags">
-        <!-- tags from search filter -->
-      </section>
 
-      <section class="filter">
-        <div class="filter__custom-select">
-          <span class="filter__custom-arrow"></span>
+    <main class="main">
+      <section class="search">
+        <div class="search__input-group">
           <input
-            class="filter__select filter__select--primary"
-            type="button"
-            data-color="primary"
-            data-value="Ingrédients"
-            value="Ingrédients"
+            type="text"
+            class="search__input item"
+            id="searchInput"
+            placeholder="Rechercher une recette"
+            autocomplete="off"
           />
-          <!-- UL et LI COMPONENT JAVASCRIPTS  -->
-        </div>
-
-        <div class="filter__custom-select">
-          <span class="filter__custom-arrow"></span>
-          <input
-            class="filter__select filter__select--success"
-            type="button"
-            data-color="success"
-            data-value="Appareil"
-            value="Appareil"
-          />
-          <!-- UL et LI COMPONENT JAVASCRIPTS  -->
-        </div>
-
-        <div class="filter__custom-select">
-          <span class="filter__custom-arrow"></span>
-          <input
-            class="filter__select filter__select--danger"
-            type="button"
-            data-color="danger"
-            data-value="Ustensiles"
-            value="Ustensiles"
-          />
-          <!-- UL et LI COMPONENT JAVASCRIPTS  -->
+          <button class="search__button item" id="glass-icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
         </div>
       </section>
-      <div class="recipeContainer"></div>
+      <p class="not-found"></p>
+
+      <p class="reset-filter">
+        <i class="fa-solid fa-arrow-rotate-right"></i> Réinitialiser la
+        recherche
+      </p>
+
+      <section id="tags__selected" class="container">
+        <div class="tag__ingredients--wrapper"></div>
+        <div class="tag__appliances--wrapper"></div>
+        <div class="tag__ustensils--wrapper"></div>
+      </section>
+
+      <section id="filters">
+        <div class="filter__ingredients"></div>
+        <div class="filter__appliances"></div>
+        <div class="filter__ustensils"></div>
+      </section>
+
+      <section id="recipes__cards" class="container">
+        <!--CARDS COMPONENT JAVASCRIPTS recipeCards.js -->
+      </section>
     </main>
-    <script src="index.js"></script>
+    <script src="./index.js"></script>
+    <script src="./script/app/recipeCards.js"></script>
+    <script src="./script/utils/mainSearch.js"></script>
   </body>
 </html>
