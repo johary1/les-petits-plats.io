@@ -126,9 +126,7 @@ function addTagFilterUstensils() {
         deleteIconImg.style.width = "20px";
         deleteTagIcon.addEventListener("click", () => {
           tagUstensilContainer.remove();
-          console.time("filter ustensil");
           realtimeSearch();
-          console.timeEnd("filter ustensil");
           return false;
         });
         tagUstensilWrapper.appendChild(tagUstensilContainer);
