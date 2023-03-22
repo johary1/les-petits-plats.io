@@ -1,45 +1,94 @@
+/** recipesToDisplay is defined in filterTags.js **/
+/** filteredRecipesWithTags is defined in tags.js **/
+/** fillFilters is defined in filterUpdate.js **/
+/** DisplayData is defined in index.js **/
+
 const searchBarInput = document.querySelector(".search__input");
 const noResultText = document.querySelector(".not-found");
 
+/** Manage search with filters option1  **/
+//4.33ms test filtre ingredient
 function realtimeSearch() {
-  let recipesToDisplay = [];
-  const mainInput = searchBarInput.value.trim().toLowerCase();
+  let tagsUsed = false;
+  recipesToDisplay = [];
+  let mainInput;
 
-  for (let i = 0; i < recipes.length; i++) {
-    const recipe = recipes[i];
-    const regex = new RegExp(mainInput, "i");
+  // Return array with filtered recipes
+  if (searchBarInput.value.length > 2) {
+    mainInput = searchBarInput.value;
 
-    if (
-      regex.test(recipe.name.toLowerCase()) ||
-      recipe.name.toLowerCase().includes(mainInput)
-    ) {
-      recipesToDisplay.push(recipe);
-    } else if (
-      regex.test(recipe.description.toLowerCase()) ||
-      recipe.description.toLowerCase().includes(mainInput)
-    ) {
-      recipesToDisplay.push(recipe);
-    } else {
-      for (let j = 0; j < recipe.ingredients.length; j++) {
-        const ingredient = recipe.ingredients[j].ingredient;
-        if (
-          regex.test(ingredient.toLowerCase()) ||
-          ingredient.toLowerCase().includes(mainInput)
-        ) {
-          recipesToDisplay.push(recipe);
-          break;
-        }
+    const regex = new RegExp(`${mainInput.trim().toLowerCase()}`, "i");
+    for (let i = 0; i < recipes.length; i++) {
+      let recipeIsMatching = false;
+      let recipe = recipes[i];
+      if (
+        regex.test(recipe.name) ||
+        recipe.name.toLowerCase().includes(mainInput.trim().toLowerCase())
+      ) {
+        recipeIsMatching = true;
+      } else if (
+        regex.test(recipe.description) ||
+        recipe.description
+          .toLowerCase()
+          .includes(mainInput.trim().toLowerCase())
+      ) {
+        recipeIsMatching = true;
       }
+      recipe.ingredients.forEach(({ ingredient }) => {
+        if (
+          regex.test(ingredient) ||
+          ingredient.toLowerCase().includes(mainInput.trim().toLowerCase())
+        ) {
+          recipeIsMatching = true;
+        }
+      });
+      if (recipeIsMatching) {
+        recipesToDisplay.push(recipe);
+      }
+    }
+    fillFilters(recipesToDisplay);
+  }
+
+  if (
+    Array.from(
+      document.querySelectorAll(
+        ".tag__ingredients--wrapper .tag__ingredient .tag-blue"
+      )
+    ).length > 0 ||
+    Array.from(
+      document.querySelectorAll(
+        ".tag__appliances--wrapper .tag__appliance .tag-green"
+      )
+    ).length > 0 ||
+    Array.from(
+      document.querySelectorAll(
+        ".tag__ustensils--wrapper .tag__ustensil .tag-red"
+      )
+    ).length > 0
+  ) {
+    tagsUsed = true;
+    if (recipesToDisplay.length > 0) {
+      recipesToDisplay = filteredRecipesWithTags(recipesToDisplay);
+    } else {
+      recipesToDisplay = filteredRecipesWithTags(recipes);
     }
   }
 
+  // handle case when there is no result
   if (recipesToDisplay.length > 0) {
     noResultText.innerHTML = "";
     displayData(recipesToDisplay);
-  } else if (mainInput.length >= 3) {
-    displayData([]);
-    noResultText.innerHTML = "<p>Aucun résultat correspondant ...</p>";
   } else {
+    displayData(recipesToDisplay);
+    noResultText.innerHTML = "<p>Aucun résultat correspondant ...</p>";
+  }
+
+  // else
+  if (
+    (searchBarInput.value === "" || searchBarInput.value.length < 3) &&
+    tagsUsed === false
+  ) {
+    fillFilters(recipes);
     displayData(recipes);
     noResultText.innerHTML = "";
   }

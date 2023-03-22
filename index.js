@@ -10,18 +10,25 @@ async function getDataJson() {
 function displayData(recipes) {
   const recipeSection = document.getElementById("recipes__cards");
   recipeSection.innerHTML = "";
-  // getRecipeCard is defined in recipeCards.js
-  recipes.forEach((recipe) => {
+
+  for (let i = 0; i < recipes.length; i++) {
+    const recipe = recipes[i];
     const recipeCard = getRecipeCard(recipe);
     recipeSection.appendChild(recipeCard);
-  });
+  }
 }
 
 function init() {
   /* Display all recipes */
-  console.time("display recipe");
   displayData(recipes);
-  console.timeEnd("display recipe");
+  /* Display all filters */
+  filterIngredients();
+  filterAppliances();
+  filterUstensils();
+  /* Display filter's item on click */
+  isArrowClicked();
+  /* Update filter item content with recipes from search input */
+  fillFilters(recipes);
 }
 
 getDataJson();
