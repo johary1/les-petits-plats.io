@@ -80,10 +80,13 @@ function realtimeSearch() {
   // handle case when there is no result
   if (recipesToDisplay.length > 0) {
     noResultText.innerHTML = "";
+    // filtered recipes
     displayData(recipesToDisplay);
   } else {
-    displayData(recipesToDisplay);
     noResultText.innerHTML = "<p>Aucun résultat correspondant ...</p>";
+    fillFilters(recipes);
+    // all recipes
+    displayData(recipes);
   }
 
   // else
