@@ -14,7 +14,7 @@ function realtimeSearch() {
   let mainInput;
 
   // Return array with filtered recipes
-  if (searchBarInput.value.length > 2) {
+  if (searchBarInput.value.length >= 2) {
     mainInput = searchBarInput.value;
 
     const regex = new RegExp(`${mainInput.trim().toLowerCase()}`, "i");
@@ -34,14 +34,17 @@ function realtimeSearch() {
       ) {
         recipeIsMatching = true;
       }
-      recipe.ingredients.forEach(({ ingredient }) => {
+
+      for (let i = 0; i < recipe.ingredients.length; i++) {
+        const ingredient = recipe.ingredients[i].ingredient;
         if (
           regex.test(ingredient) ||
           ingredient.toLowerCase().includes(mainInput.trim().toLowerCase())
         ) {
           recipeIsMatching = true;
         }
-      });
+      }
+
       if (recipeIsMatching) {
         recipesToDisplay.push(recipe);
       }
